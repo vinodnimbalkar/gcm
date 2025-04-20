@@ -5,6 +5,8 @@
 ## Description
 
 This tool pipes your Git diff into an Ollama instance running locally to generate semantically relevant commit messages that follow conventional commit formats with emoji prefixes. It's perfect for developers who want consistent, meaningful commit messages without the mental overhead of crafting them each time.
+![GD - AI-Powered Git Commit Message Generator - visual selection](https://github.com/user-attachments/assets/9bdc1145-9b92-4a89-ab40-28b3a3d1c759)
+
 
 ## Features
 
