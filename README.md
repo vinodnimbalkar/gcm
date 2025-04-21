@@ -56,7 +56,8 @@ For convenience, you might want to add an alias to your shell configuration:
 
 ```sh
 # Add to .bashrc, .zshrc, etc.
-alias gcm='git commit -m "$(git diff --staged | gd)"'
+alias gcm='git commit -m "$(git diff --staged | gd | sed -n '1p')" -m "$(git diff --staged | gd | sed -n '2,$p')"'
+
 ```
 
 ## Commit Message Format
