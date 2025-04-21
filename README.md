@@ -1,11 +1,11 @@
-# GD - AI-Powered Git Commit Message Generator
+# GCM - AI-Powered Git Commit Message Generator
 
-`gd` is a command-line tool that generates meaningful Git commit messages with appropriate emojis based on your Git diff, powered by local LLMs through Ollama.
+`gcm` is a command-line tool that generates meaningful Git commit messages with appropriate emojis based on your Git diff, powered by local LLMs through Ollama.
 
 ## Description
 
 This tool pipes your Git diff into an Ollama instance running locally to generate semantically relevant commit messages that follow conventional commit formats with emoji prefixes. It's perfect for developers who want consistent, meaningful commit messages without the mental overhead of crafting them each time.
-![GD - AI-Powered Git Commit Message Generator - visual selection](https://github.com/user-attachments/assets/9bdc1145-9b92-4a89-ab40-28b3a3d1c759)
+![GCM - AI-Powered Git Commit Message Generator - visual selection](https://github.com/user-attachments/assets/9bdc1145-9b92-4a89-ab40-28b3a3d1c759)
 
 
 ## Features
@@ -27,8 +27,8 @@ This tool pipes your Git diff into an Ollama instance running locally to generat
 ### From Source
 
 ```sh
-git clone https://github.com/yourusername/gd.git
-cd gd
+git clone https://github.com/yourusername/gcm.git
+cd gcm
 cargo install --path .
 ```
 
@@ -37,26 +37,26 @@ cargo install --path .
 Simply pipe your Git diff to the tool:
 
 ```sh
-git diff | gd
+git diff | gcm
 ```
 
 Or for staged changes:
 
 ```sh
-git diff --staged | gd
+git diff --staged | gcm
 ```
 
 Then use the generated message to commit:
 
 ```sh
-git commit -m "$(git diff --staged | gd)"
+git commit -m "$(git diff --staged | gcm)"
 ```
 
 For convenience, you might want to add an alias to your shell configuration:
 
 ```sh
 # Add to .bashrc, .zshrc, etc.
-alias gcm='git commit -m "$(git diff --staged | gd | sed -n '1p')" -m "$(git diff --staged | gd | sed -n '2,$p')"'
+alias gcm='git commit -m "$(git diff --staged | gcm | sed -n '1p')" -m "$(git diff --staged | gcm | sed -n '2,$p')"'
 
 ```
 

@@ -211,7 +211,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "gd"
+name = "gcm"
 version = "1.0.1"
 dependencies = [
  "reqwest",
