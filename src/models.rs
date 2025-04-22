@@ -11,3 +11,35 @@ pub struct OllamaRequest {
 pub struct OllamaResponse {
     pub response: String,
 }
+
+// Gemini API request and response structures
+#[derive(Serialize, Debug)]
+pub struct GeminiRequest {
+    pub contents: Vec<Contents>,
+}
+
+#[derive(Serialize, Debug)]
+pub struct Contents {
+    pub parts: Vec<Part>,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+pub struct Part {
+    pub text: String,
+}
+
+#[derive(Deserialize, Debug)]
+pub struct GeminiResponse {
+    pub candidates: Vec<Candidate>,
+}
+
+#[derive(Deserialize, Debug)]
+pub struct Candidate {
+    pub content: Content,
+}
+
+#[derive(Deserialize, Debug)]
+pub struct Content {
+    pub parts: Vec<Part>,
+}
+

@@ -1,4 +1,5 @@
 pub mod ollama;
+pub mod gemini;
 
 // Trait for any LLM service
 pub trait LlmService {
