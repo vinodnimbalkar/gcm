@@ -56,7 +56,7 @@ For convenience, you might want to add an alias to your shell configuration:
 
 ```sh
 # Add to .bashrc, .zshrc, etc.
-alias gcm='git commit -m "$(git diff --staged | gcm | sed -n '1p')" -m "$(git diff --staged | gcm | sed -n '2,$p')"'
+alias gcm='commit_message=$(git diff --staged | gcm); git commit -m "$(echo "$commit_message" | head -n 1)" -m "$(echo "$commit_message" | tail -n +2)"'
 
 ```
 ## LLM Service Configuration
