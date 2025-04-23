@@ -59,6 +59,29 @@ For convenience, you might want to add an alias to your shell configuration:
 alias gcm='git commit -m "$(git diff --staged | gcm | sed -n '1p')" -m "$(git diff --staged | gcm | sed -n '2,$p')"'
 
 ```
+## LLM Service Configuration
+
+The tool supports two LLM services:
+
+### 1. Ollama (Default, Local)
+
+If no Gemini API key is set, `gcm` will use Ollama by default. Ollama must be installed and running locally.
+
+You can configure the Ollama model using an environment variable:
+```sh
+export OLLAMA_MODEL=gemma3  # Default is "gemma3"
+```
+
+### 2. Gemini (Cloud API)
+
+To use Google's Gemini API:
+1. Obtain a Gemini API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
+2. Set the API key as an environment variable:
+```sh
+export GEMINI_API_KEY=your_api_key_here
+```
+
+`gcm` will automatically use Gemini when the `GEMINI_API_KEY` environment variable is set.
 
 ## Commit Message Format
 
