@@ -31,6 +31,11 @@ git clone https://github.com/vinodnimbalkar/gcm.git
 cd gcm
 cargo install --path .
 ```
+### From Release
+This one-line installation does not support every OS
+```bash
+curl -sL "https://github.com/vinodnimbalkar/gcm/releases/download/v1.0.2/gcm" | sudo tee ~/.local/bin/gcm >/dev/null && sudo chmod +x ~/.local/bin/gcm
+```
 
 ## Usage
 
