@@ -27,7 +27,7 @@ This tool pipes your Git diff into an Ollama instance running locally to generat
 ### From Source
 
 ```sh
-git clone https://github.com/yourusername/gcm.git
+git clone https://github.com/vinodnimbalkar/gcm.git
 cd gcm
 cargo install --path .
 ```
