@@ -1,42 +1,31 @@
-# Use the official Rust image as a base
+# Stage 1: Builder
 FROM rust:1.86-slim AS builder
 
-# Install required system dependencies
+# Install only essential build dependencies
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     pkg-config \
-    libssl-dev \
-    ca-certificates && \
+    libssl-dev && \
     rm -rf /var/lib/apt/lists/*
 
-# Create a working directory
 WORKDIR /app
 
-# Copy only the necessary files for dependency resolution first
+# Copy build files
 COPY Cargo.toml Cargo.lock ./
+COPY src ./src
 
-# Copy the entire project
-COPY . .
+# Build for release and strip symbols
+RUN cargo build --release --locked && \
+    strip /app/target/release/gcm
 
-# Build for release
-RUN cargo build --release --locked
+# Stage 2: Runtime
+FROM gcr.io/distroless/cc
 
-# Final stage with minimal image
-FROM debian:bookworm-slim
-
-# Install runtime dependencies
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-    git \
-    ca-certificates \
-    curl && \
-    rm -rf /var/lib/apt/lists/*
-
-# Copy the built binary from the builder stage
+# Copy only the binary and necessary certificates
 COPY --from=builder /app/target/release/gcm /usr/local/bin/gcm
+COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 
-# Set up environment variables for configuration
+# Environment variables
 ENV OLLAMA_MODEL=gemma3
 
-# Default command that accepts stdin
-ENTRYPOINT ["gcm"]
+ENTRYPOINT ["/usr/local/bin/gcm"]
