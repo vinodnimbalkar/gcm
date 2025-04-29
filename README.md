@@ -37,23 +37,22 @@ This one-line installation does not support every OS
 curl -sL "https://github.com/vinodnimbalkar/gcm/releases/download/v1.0.2/gcm" | sudo tee ~/.local/bin/gcm >/dev/null && sudo chmod +x ~/.local/bin/gcm
 ```
 
-### Building the Docker Image
-```sh
-# Clone the repository
-git clone https://github.com/vinodnimbalkar/gcm.git
-cd gcm
+### Using the Docker Image
 
-# Build the Docker image
-docker build -t gcm .
-```
-Using with Gemini API
+You can directly use the pre-built Docker image from Docker Hub:
+
 ```sh
-git diff | docker run -i --rm -e GEMINI_API_KEY=your_api_key_here gcm
+docker pull vinodnimbalkar/gcm:latest
+```
+
+Using with Gemini API via Docker
+```sh
+git diff | docker run -i --rm -e GEMINI_API_KEY=your_api_key_here vinodnimbalkar/gcm:latest
 ```
 Creating a Shell Alias for Docker
 ```sh
 # Add to .bashrc, .zshrc, etc.
-alias docker-gcm='commit_message=$(git diff --staged | docker run -i --rm -e GEMINI_API_KEY=your_api_key_here gcm); git commit -m "$(echo "$commit_message" | head -n 1)" -m "$(echo "$commit_message" | tail -n +2)"'
+alias docker-gcm='commit_message=$(git diff --staged | docker run -i --rm -e GEMINI_API_KEY=your_api_key_here vinodnimbalkar/gcm:latest); git commit -m "$(echo "$commit_message" | head -n 1)" -m "$(echo "$commit_message" | tail -n +2)"'
 ```
 ## Usage
 
