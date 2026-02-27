@@ -30,7 +30,7 @@ impl LlmService for GeminiService {
             }],
         };
 
-        let url = format!("https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={}", gemini_api_key);
+        let url = format!("https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key={}", gemini_api_key);
 
         let response = match self
             .client
